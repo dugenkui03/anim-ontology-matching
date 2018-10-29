@@ -1,6 +1,6 @@
 v = set();
 
-filex = open('EntityClass')
+filex = open('EntityInstance.txt')
 
 for line in filex:
 	v.add(line)

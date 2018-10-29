@@ -134,8 +134,3 @@ select COUNT(?a) as ?cou
 where{
 ?a <http://xmlns.com/foaf/0.1/name> ?b
 }
-
-
-
-
-
