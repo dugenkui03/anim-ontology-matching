@@ -1,5 +1,5 @@
-file_anim = open("anim.txt");
-file_dbpedia = open("dbpedia.txt");
+file_anim = open("anim");
+file_dbpedia = open("dbpedia");
 
 
 # 相等的15个
@@ -34,8 +34,8 @@ file_dbpedia.close();
 
 
 #近义词：调用https://www.thesaurus.com/browse/XXX
-file_anim = open("anim.txt");
-file_dbpedia = open("dbpedia.txt");
+file_anim = open("anim");
+file_dbpedia = open("dbpedia");
 
 api_uri="https://www.thesaurus.com/browse/human";
 

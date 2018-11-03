@@ -3,7 +3,7 @@ import requests
 api ='http://dbpedia.org/page/'
 
 count=0;
-file_anim=open('anim.txt')
+file_anim=open('anim')
 for line_anim in file_anim:
 	term=line_anim.split(";")[2].strip("\n")
 	print(term)
