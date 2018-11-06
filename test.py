@@ -1,8 +1,12 @@
 import Levenshtein
 
-s1="dugenkui"
-s2="dugenlong"
+# s1="dugenkui"
+# s2="dugenlong"
+#
+# print(Levenshtein.distance(s1, s2))
+#
+# Levenshtein.dis
 
-print(Levenshtein.distance(s1, s2))
+# print("du,gen,kui".split(",")[3])
 
-Levenshtein.dis
+print(Levenshtein.jaro_winkler("dugenlong", "dugenkui"))
