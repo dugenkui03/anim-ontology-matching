@@ -70,7 +70,6 @@ def getClas2Instance():
 		t.join()
 	return clz2entityList
 
-getClas2Instance()
 #
 # for term in listx:
 #     sparql.setQuery("SELECT COUNT(*) as ?cou WHERE { <http://dbpedia.org/resource/"+term.title()+"> rdfs:label ?label }")
