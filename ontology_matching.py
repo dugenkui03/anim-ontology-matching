@@ -184,39 +184,42 @@ def standardizing_data():
 
 
 # 相等匹配
-animList = OntologyMatching.get_item("data/standanim")
-dbpediaList = OntologyMatching.get_item("data/standdbpedia")
-equalDict = OntologyMatching.match_two_list_equal(animList, dbpediaList)
-OntologyMatching.someway_match("data/standanim", "data/standdbpedia", equalDict, "equal")
+# animList = OntologyMatching.get_item("data/standanim")
+# dbpediaList = OntologyMatching.get_item("data/standdbpedia")
+# equalDict = OntologyMatching.match_two_list_equal(animList, dbpediaList)
+# OntologyMatching.someway_match("data/standanim", "data/standdbpedia", equalDict, "equal")
+#
+# # 编辑距离为1匹配且字符串长度大于4的匹配
+# animList = OntologyMatching.get_item("data/equalAnim")
+# dbpediaList = OntologyMatching.get_item("data/equalDBpedia")
+# disDict = OntologyMatching.match_two_list_levDis(animList, dbpediaList)
+# OntologyMatching.dict_match("data/equalAnim", "data/equalDBpedia", disDict, "levdis")
+#
+# # ratio = (sum-dis)/sum > 0.75 而且字串长度大于4
+# animList = OntologyMatching.get_item("data/levdisAnim")
+# dbpediaList = OntologyMatching.get_item("data/levdisDBpedia")
+# disDict = OntologyMatching.match_two_list_ratio(animList, dbpediaList)
+# OntologyMatching.dict_match("data/levdisAnim", "data/levdisDBpedia", disDict, "ratio")
+#
+# # jaro  > 0.83 而且字串长度大于4
+# animList = OntologyMatching.get_item("data/ratioAnim")
+# dbpediaList = OntologyMatching.get_item("data/ratioDBpedia")
+# disDict = OntologyMatching.match_two_list_jaro(animList, dbpediaList)
+# OntologyMatching.dict_match("data/ratioAnim", "data/ratioDBpedia", disDict, "jaro")
+#
+# # jaroWinkler>0.95
+# animList = OntologyMatching.get_item("data/jaroAnim")
+# dbpediaList = OntologyMatching.get_item("data/jaroDBpedia")
+# disDict = OntologyMatching.match_two_list_jaroWinkler(animList, dbpediaList)
+# OntologyMatching.dict_match("data/jaroAnim", "data/jaroDBpedia", disDict, "jaroWinkler")
+#
+#
+# # 动画类对实例
+# clz2entityList=getClas2Instance()
+# OntologyMatching.clz2entity_match("data/jaroWinklerAnim",clz2entityList)
+#
+# #lookup接口
+# api_lookup="http://lookup.dbpedia.org/api/search.asmx/KeywordSearch?QueryClass=&QueryString="
+# remainderItem=OntologyMatching.get_item("data/clz2entityAnim")
 
-# 编辑距离为1匹配且字符串长度大于4的匹配
-animList = OntologyMatching.get_item("data/equalAnim")
-dbpediaList = OntologyMatching.get_item("data/equalDBpedia")
-disDict = OntologyMatching.match_two_list_levDis(animList, dbpediaList)
-OntologyMatching.dict_match("data/equalAnim", "data/equalDBpedia", disDict, "levdis")
-
-# ratio = (sum-dis)/sum > 0.75 而且字串长度大于4
-animList = OntologyMatching.get_item("data/levdisAnim")
-dbpediaList = OntologyMatching.get_item("data/levdisDBpedia")
-disDict = OntologyMatching.match_two_list_ratio(animList, dbpediaList)
-OntologyMatching.dict_match("data/levdisAnim", "data/levdisDBpedia", disDict, "ratio")
-
-# jaro  > 0.83 而且字串长度大于4
-animList = OntologyMatching.get_item("data/ratioAnim")
-dbpediaList = OntologyMatching.get_item("data/ratioDBpedia")
-disDict = OntologyMatching.match_two_list_jaro(animList, dbpediaList)
-OntologyMatching.dict_match("data/ratioAnim", "data/ratioDBpedia", disDict, "jaro")
-
-# jaroWinkler>0.95
-animList = OntologyMatching.get_item("data/jaroAnim")
-dbpediaList = OntologyMatching.get_item("data/jaroDBpedia")
-disDict = OntologyMatching.match_two_list_jaroWinkler(animList, dbpediaList)
-OntologyMatching.dict_match("data/jaroAnim", "data/jaroDBpedia", disDict, "jaroWinkler")
-
-
-# 动画类对实例
-clz2entityList=getClas2Instance()
-OntologyMatching.clz2entity_match("data/jaroWinklerAnim",clz2entityList)
-
-#lookup接口
-api_lookup="http://lookup.dbpedia.org/api/search.asmx/KeywordSearch?QueryClass=&QueryString="
+# for item in remainderItem:
