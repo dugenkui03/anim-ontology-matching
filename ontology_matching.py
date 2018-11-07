@@ -8,6 +8,9 @@ class OntologyMatching():
 	"""
 
 	def get_item(filePath):
+		"""
+		获取没有匹配的item数据行
+		"""
 		with open(filePath) as file:
 			fileContent = file.readlines()
 			res = []
@@ -16,7 +19,8 @@ class OntologyMatching():
 					listx = line.split(";")
 					if (len(listx) > 2):  # 如果已经匹配过
 						continue
-					res.append(line.split(";")[1].strip())
+					# res.append(line.split(";")[1].strip())
+					res.append(line) #获取没有匹配的item数据行,类似于
 				except:
 					pass
 				# print(line.strip() + " has no term")
