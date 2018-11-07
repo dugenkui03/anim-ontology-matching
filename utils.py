@@ -59,7 +59,7 @@ def getClas2Instance():
 	while len(animList)!=0:
 		cou+=1
 		if cou%5==0:
-			time.sleep(1)
+			time.sleep(0.5)
 		threadx=LockThread(animList)
 		threadList.append(threadx)
 		threadx.start()

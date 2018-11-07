@@ -20,7 +20,7 @@ class OntologyMatching():
 					if (len(listx) > 2):  # 如果已经匹配过
 						continue
 					# res.append(line.split(";")[1].strip())
-					res.append(line) #获取没有匹配的item数据行,类似于
+					res.append(line.strip()) #获取没有匹配的item数据行,类似于  DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#TV);tv
 				except:
 					pass
 				# print(line.strip() + " has no term")
@@ -28,9 +28,18 @@ class OntologyMatching():
 
 	def match_two_list_equal(listx, listy):
 		"""
-		返回两个列表的交集
+		以字典的形式返回连个数据集的交集
 		"""
-		res = [val for val in listx if val in listy]
+		# res = [val for val in listx if val in listy]
+
+		res={}
+		for animLine in listx:
+			animTerm=animLine.split(";")[1]
+			for dbpediaLine in listy:
+				dbpediaTerm=dbpediaLine.split(";")[1]
+				if animTerm.strip() == dbpediaTerm.strip():
+					res[animLine.split(";")[0]]= dbpediaLine.split(";")[0]
+					break
 		return res
 
 	def match_two_list_levDis(listx, listy):
@@ -38,10 +47,12 @@ class OntologyMatching():
 		编辑距离为1，而且字符串长度大于等于5
 		"""
 		res = {}
-		for x in listx:
-			for y in listy:
-				if Levenshtein.distance(x, y) < 2 and len(x) > 4 and len(y) > 4:
-					res[x] = y
+		for animLine in listx:
+			animTerm=animLine.split(";")[1]
+			for dbpediaLine in listy:
+				dbpediaTerm=dbpediaLine.split(";")[1]
+				if Levenshtein.distance(animTerm, dbpediaTerm) < 2 and len(animTerm) > 4 and len(dbpediaTerm) > 4:
+					res[animLine.split(";")[0]]= dbpediaLine.split(";")[0]
 		return res
 
 	def match_two_list_ratio(listx, listy):
@@ -49,54 +60,63 @@ class OntologyMatching():
 		编辑距离为1，而且字符串长度大于等于5
 		"""
 		res = {}
-		for x in listx:
-			for y in listy:
-				if Levenshtein.ratio(x, y) > 0.75 and len(x) > 4 and len(y) > 4:
-					res[x] = y
+		for animLine in listx:
+			animTerm=animLine.split(";")[1]
+			for dbpediaLine in listy:
+				dbpediaTerm=dbpediaLine.split(";")[1]
+				if Levenshtein.ratio(animTerm, dbpediaTerm) > 0.75 and len(animTerm) > 4 and len(dbpediaTerm) > 4:
+					res[animLine.split(";")[0]]= dbpediaLine.split(";")[0]
 		return res
 
 	def match_two_list_jaro(listx, listy):
 		res = {}
-		for x in listx:
-			for y in listy:
-				if Levenshtein.jaro(x, y) > 0.83 and len(x) > 4 and len(y) > 4:
-					res[x] = y
+		for animLine in listx:
+			animTerm=animLine.split(";")[1]
+			for dbpediaLine in listy:
+				dbpediaTerm=dbpediaLine.split(";")[1]
+				if Levenshtein.jaro(animTerm, dbpediaTerm) > 0.83 and len(animTerm) > 4 and len(dbpediaTerm) > 4:
+					res[animLine.split(";")[0]] = dbpediaLine.split(";")[0]
 		return res
 
 	def match_two_list_jaroWinkler(listx, listy):
 		res = {}
-		for x in listx:
-			for y in listy:
-				if Levenshtein.jaro_winkler(x, y) > 0.95 and len(x) > 4 and len(y) > 4:
-					res[x] = y
+		for animLine in listx:
+			animTerm=animLine.split(";")[1]
+			for dbpediaLine in listy:
+				dbpediaTerm=dbpediaLine.split(";")[1]
+				if Levenshtein.jaro_winkler(animTerm, dbpediaTerm) > 0.95 and len(animTerm) > 4 and len(dbpediaTerm) > 4:
+					res[animLine.split(";")[0]] = dbpediaLine.split(";")[0]
 		return res
 
 	"""
 	 fixme 以下函数匹配并修改文件
 	"""
 
-	def someway_match(animPath, dbpediaPath, matchList, matWay):
+	def someway_match(animPath, dbpediaPath, matchDict, matWay):
 		"""
 		创建新文件保存匹配上的term及匹配方式，例如 Book以equal的方式匹配上了，则两个文件相应列修改为： .../book,book->.../book,book,equal
 		:param dbpediaPath: 需要被修改的文件路径
-		:param matchList:  匹配列表
+		:param matchDict:  匹配列表
 		:param matWay:  匹配方式
 		"""
 		with open("data/" + matWay + "Anim", "w") as matchedAnim:
 			with open(animPath) as animfile:
 				animContent = animfile.readlines()
 				for line in animContent:
-					ele = line.split(";")[1].strip()
-					if ele in matchList:
-						matchedAnim.write(line.strip() + ";" + matWay + "\n")
+					ele = line.split(";")[0].strip()
+					if ele in matchDict.keys():
+						matchedAnim.write(line.strip() + ";" + matWay +";"+matchDict[ele]+ "\n")
 					else:
 						matchedAnim.write(line.strip() + "\n")
 		with open("data/" + matWay + "DBpedia", "w") as matchedDBpedia:
 			with open(dbpediaPath) as dbpediaFile:
 				dbpediaContent = dbpediaFile.readlines()
 				for line in dbpediaContent:
-					if line.split(";")[1].strip() in matchList:
-						matchedDBpedia.write(line.strip() + ";" + matWay + "\n")
+					if line.split(";")[0].strip() in matchDict.values():
+						content=line.strip() + ";" + matWay+";"+list(matchDict.keys())[list(matchDict.values()).index(line.split(";")[0].strip())]
+						matchedDBpedia.write(line.strip() + ";" + matWay+";"+
+											list(matchDict.keys())[list(matchDict.values()).index(line.split(";")[0].strip())]#fixme 根据value得到key
+						                     + "\n")
 					else:
 						matchedDBpedia.write(line.strip() + "\n")
 
@@ -125,17 +145,19 @@ class OntologyMatching():
 			with open(animPath) as animfile:
 				animContent = animfile.readlines()
 				for line in animContent:
-					ele = line.split(";")[1].strip()
+					ele = line.split(";")[0].strip()
 					if ele in matchDict.keys():
-						matchedAnim.write(line.strip() + ";" + matWay + "\n")
+						matchedAnim.write(line.strip() + ";" + matWay +";"+matchDict[ele] + "\n")
 					else:
 						matchedAnim.write(line.strip() + "\n")
 		with open("data/" + matWay + "DBpedia", "w") as matchedDBpedia:
 			with open(dbpediaPath) as dbpediaFile:
 				dbpediaContent = dbpediaFile.readlines()
 				for line in dbpediaContent:
-					if line.split(";")[1].strip() in matchDict.values():
-						matchedDBpedia.write(line.strip() + ";" + matWay + "\n")
+					if line.split(";")[0].strip() in matchDict.values():
+						matchedDBpedia.write(line.strip() + ";" + matWay +";"+
+						                     list(matchDict.keys())[list(matchDict.values()).index(line.split(";")[0].strip())]+
+						                     "\n")
 					else:
 						matchedDBpedia.write(line.strip() + "\n")
 
@@ -164,8 +186,8 @@ def standardizing_data():
 # 相等匹配
 animList = OntologyMatching.get_item("data/standanim")
 dbpediaList = OntologyMatching.get_item("data/standdbpedia")
-equalList = OntologyMatching.match_two_list_equal(animList, dbpediaList)
-OntologyMatching.someway_match("data/standanim", "data/standdbpedia", equalList, "equal")
+equalDict = OntologyMatching.match_two_list_equal(animList, dbpediaList)
+OntologyMatching.someway_match("data/standanim", "data/standdbpedia", equalDict, "equal")
 
 # 编辑距离为1匹配且字符串长度大于4的匹配
 animList = OntologyMatching.get_item("data/equalAnim")
@@ -195,3 +217,6 @@ OntologyMatching.dict_match("data/jaroAnim", "data/jaroDBpedia", disDict, "jaroW
 # 动画类对实例
 clz2entityList=getClas2Instance()
 OntologyMatching.clz2entity_match("data/jaroWinklerAnim",clz2entityList)
+
+#lookup接口
+api_lookup="http://lookup.dbpedia.org/api/search.asmx/KeywordSearch?QueryClass=&QueryString="
