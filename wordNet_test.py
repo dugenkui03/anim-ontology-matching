@@ -31,20 +31,27 @@ from nltk.corpus import wordnet as wn
 # print(color.path_similarity(colour))
 
 
+def countx():
+	res = {}
 
-def countx(type):
-	cout=0
+	dbpedia_term_dict = {}
+	with open("data/dbpedia") as dbpedia_file:
+		dbpedia_content = dbpedia_file.readlines()
+		for line in dbpedia_content:
+			dbpedia_term_dict[line.split(";")[1].lower().strip()] = line.split(";")[0].lower().strip()
+
 	with open("data/clz2entityAnim") as animFile:
-		animContent=animFile.readlines()
-		for line in animContent:
-			term=line.split(";")[1]
-			syno=str(wn.synsets(term, pos=type))
-			if len(syno)>4:
-				cout += 1
-			print("term:"+term.strip()+"\tsyno"+syno)
-	print(type+"："+str(cout))
+		animContent = animFile.readlines()
+		for animLine in animContent:
+			term = animLine.split(";")[1]
+			syno_list = wn.synsets(term)
+			for ele in syno_list:
+				syn_term = ele.name().split(".")[0]
+				if (syn_term != term):
+					if syn_term in dbpedia_term_dict.keys():
+						# list(matchDict.keys())[list(matchDict.values()).index(line.split(";")[0].strip())]
+						res[animLine.split(";")[0]] = dbpedia_term_dict[syn_term]
+	return res
 
-type=[wn.NOUN,wn.VERB,wn.ADJ,wn.ADJ_SAT,wn.ADV]
-
-for ele in type:
-	countx(ele)
+syno_dic = countx()
+print(syno_dic)
