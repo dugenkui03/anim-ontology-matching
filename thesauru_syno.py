@@ -30,7 +30,11 @@ def find_syno_by_thesauru(anim_line, syno_dic):
 	match_list = pattern.findall(str(element_content))
 
 	resList = []
+	count=0
 	for match_ele in match_list:
+		count+=1
+		if count>5 :
+			break;
 		if match_ele.split("/")[2] == term:
 			continue
 		resList.append(match_ele.split("/")[2])
