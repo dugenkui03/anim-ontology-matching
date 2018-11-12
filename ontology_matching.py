@@ -381,20 +381,14 @@ def sparqlCheck(anim_term_dict,res_dict):
 	从字典中移除一个元素并进行sparql查询，存在相应实例则放进结果集
 	"""
 	remove_data_lock.acquire()
-	try:
-		#获取需要删除的key
-		term=list(anim_term_dict.keys()).pop()
-		print("term:\t"+term)
-		# 删除元素并备份term_uri
-		term_uri=anim_term_dict[term]
-		del anim_term_dict[term]
-	except:
-		return
+	#获取需要删除的key
+	term=list(anim_term_dict.keys()).pop()
+	# 删除元素并备份term_uri
+	term_uri=anim_term_dict[term]
+	del anim_term_dict[term]
 	remove_data_lock.release()
 
-	# sparql.setQuery("SELECT COUNT(*) as ?cou WHERE { <http://dbpedia.org/resource/" + term.title() + "> rdfs:label ?label }")
-	# http://dbpedia.org/page/Category:Emotion
-	sparql.setQuery("SELECT COUNT(*) as ?cou WHERE { <http://dbpedia.org/resource/Category:" + term.title() + "> rdfs:label ?label }")
+	sparql.setQuery("SELECT COUNT(*) as ?cou WHERE { <http://dbpedia.org/resource/" + term.title() + "> rdfs:label ?label }")
 	sparql.setReturnFormat(JSON)
 	results = sparql.query().convert()
 	for result in results["results"]["bindings"]:
@@ -403,8 +397,6 @@ def sparqlCheck(anim_term_dict,res_dict):
 			add_data_lock.acquire()
 			res_dict[term_uri]="<http://dbpedia.org/resource/"+term.title()+">"
 			add_data_lock.release()
-		else:
-			print("can't find catagory:"+term)
 
 def animClz2dbIns(anim_dict):
 	res={}
@@ -414,7 +406,7 @@ def animClz2dbIns(anim_dict):
 	while len(anim_dict)!=0:
 		cou+=1
 		if cou%5==0:
-			time.sleep(0.05)
+			time.sleep(0.5)
 		threadx=SparqlCheckThread(anim_dict,res)
 		threadList.append(threadx)
 		threadx.start()
@@ -443,12 +435,12 @@ standardizing_data()
 # thesauru_dict=OntologyMatching.get_thesauru_syno_dic(dbpedia_term_dict)
 # OntologyMatching.someway_match("data/wordNet_synoAnim", "data/wordNet_synoDBpedia", thesauru_dict, "thesuaru_syno")
 
-# # 动画类对Category:没有效果
+#动画类对应DBpedia_category没有效果，程序备份在commit中
 
-# 动画类对实例:360个
+# # 动画类对实例:360个。TODO：animClz2EntityDBpedia中是没有类对应到实例的相关数据的，因为实例信息是通过网络查询sparql获取的，仅仅在animClz2EntityAnim中可见
 anim_dict = get_term_dict("data/thesuaru_synoAnim",1)
 clz2entityDict=animClz2dbIns(anim_dict)
-# OntologyMatching.clz2entity_match("data/jaroWinklerAnim",clz2entityDict)
+OntologyMatching.someway_match("data/thesuaru_synoAnim", "data/thesuaru_synoDBpedia", clz2entityDict, "animClz2Entity")
 
 # 编辑距离为1匹配且字符串长度大于4的匹配
 # animList = OntologyMatching.get_item("data/equalAnim")
