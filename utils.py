@@ -29,7 +29,7 @@ def get_item(filePath):
 animList = get_item("data/jaroWinklerAnim")
 clz2entityList=[]
 
-class LockThread(threading.Thread):
+class SparqlCheckThread(threading.Thread):
 	def __init__(self, termList):
 		threading.Thread.__init__(self)
 		self.termList = termList
@@ -60,7 +60,7 @@ def getClas2Instance():
 		cou+=1
 		if cou%5==0:
 			time.sleep(0.5)
-		threadx=LockThread(animList)
+		threadx=SparqlCheckThread(animList)
 		threadList.append(threadx)
 		threadx.start()
 
