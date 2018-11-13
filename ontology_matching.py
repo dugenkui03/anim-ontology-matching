@@ -51,6 +51,35 @@ class OntologyMatching():
 				# print(line.strip() + " has no term")
 		return res
 
+	def someway_match(animPath, dbpediaPath, matchDict, matWay):
+		"""
+		创建新文件保存匹配上的term及匹配方式，例如 Book以equal的方式匹配上了，则两个文件相应列修改为： .../book,book->.../book,book,equal
+		:param dbpediaPath: 需要被修改的文件路径
+		:param matchDict:  匹配列表
+		:param matWay:  匹配方式
+		"""
+		with open("data/" + matWay + "Anim", "w") as matchedAnim:
+			with open(animPath) as animfile:
+				animContent = animfile.readlines()
+				for line in animContent:
+					ele = line.split(";")[0].strip()
+					if ele in matchDict.keys():
+						matchedAnim.write(line.strip() + ";" + matWay +";"+matchDict[ele]+ "\n")
+					else:
+						matchedAnim.write(line.strip() + "\n")
+		with open("data/" + matWay + "DBpedia", "w") as matchedDBpedia:
+			with open(dbpediaPath) as dbpediaFile:
+				dbpediaContent = dbpediaFile.readlines()
+				for line in dbpediaContent:
+					matched_dbpedia_term_uri=line.split(";")[0]
+					if matched_dbpedia_term_uri in matchDict.values():
+						content=line.strip() + ";" + matWay+";"+list(matchDict.keys())[list(matchDict.values()).index(line.split(";")[0].strip())]
+						matchedDBpedia.write(line.strip() + ";" + matWay+";"+
+											list(matchDict.keys())[list(matchDict.values()).index(line.split(";")[0].strip())]#fixme 根据value得到key
+						                     + "\n")
+					else:
+						matchedDBpedia.write(line.strip() + "\n")
+
 	def match_two_list_equal(animList, dbpediaList):
 		"""
 		以字典的形式返回连个数据集的交集
@@ -64,6 +93,7 @@ class OntologyMatching():
 					res[animLine.split(";")[0]]= dbpediaLine.split(";")[0]
 					# break fixme 可以多对多
 		return res
+
 
 	def get_wordNet_syno_dic(placeholder):
 		"""
@@ -149,6 +179,66 @@ class OntologyMatching():
 						]=dbpedia_term_dict[anim_syno_term]
 		return res
 
+
+	def get_wrodNet_syno_dict_for_anim2Entity(anim_file_path):
+		"""
+		1. 获取anim_term对应的近义词列表，封装在字典中，精度控制到前五个；
+		2. 网络接口查询这些近义词有没有对应的DBpedia实例，有则将<anim_term_uri,DBpedia实例_uri>放进字典。
+		"""
+		res={}
+		threadlist=[]
+		print("动画term近义词对应DBpedia实例：")
+		with open(anim_file_path) as anim_file:
+			anim_content=anim_file.readlines()
+			for anim_line in anim_content:
+				if len(anim_line.split(";"))>2 :
+					#不去匹配已经匹配的数据
+					continue
+				anim_term=anim_line.split(";")[1].strip()
+				syno_list=wn.synsets(anim_term)
+				for anim_term_syno_info in syno_list:
+					syno_term_word=anim_term_syno_info.name().split(".")[0]
+					if syno_term_word!=anim_term:
+						threadx=Term2Entity(syno_term_word+";"+anim_line.split(";")[0].strip(),res)
+						threadlist.append(threadx)
+						threadx.start()
+						time.sleep(0.005)
+
+		for t in threadlist:
+			t.join()
+
+		return res
+
+class Term2Entity(threading.Thread):
+	"""
+	寻找term对应的DBpedia实例，并将结果放进字典参数
+	"""
+	def __init__(self,anim_info_line,res_dict):
+		threading.Thread.__init__(self)
+		self.anim_info_line=anim_info_line
+		self.res_dict=res_dict
+
+	def run(self):
+		anim_term2_dbpedia_ins(self.anim_info_line,self.res_dict)
+
+
+def anim_term2_dbpedia_ins(anim_info_line,res_dict):
+	"""
+	如果anim_info_line的term在dbpedia中可以查询到实例，则将<term_uri,dbpedia_instance_uri>放入字典
+	anim_info_line内容形式<近义词，anim_term_uri>：television;DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#TV)
+	"""
+	term_syno=anim_info_line.split(";")[0].strip()
+	term_uri=anim_info_line.split(";")[1].strip()
+	sparql.setQuery("SELECT COUNT(*) as ?cou WHERE { <http://dbpedia.org/resource/" + term_syno.title() + "> rdfs:label ?label }")
+	sparql.setReturnFormat(JSON)
+	results = sparql.query().convert()
+	for result in results["results"]["bindings"]:
+		if result["cou"]["value"]!="0" and result["cou"]["value"]!="1":
+			print(term_syno+":\t"+str(term_uri)+":\t"+"<http://dbpedia.org/resource/"+str(term_syno.title())+">")
+			add_data_lock.acquire()
+			res_dict[term_uri]="<http://dbpedia.org/resource/"+term_syno.title()+">"
+			add_data_lock.release()
+
 	def match_two_list_levDis(listx, listy):
 		"""
 		编辑距离为1，而且字符串长度大于等于5
@@ -198,34 +288,7 @@ class OntologyMatching():
 	"""
 	 fixme 以下函数匹配并修改文件
 	"""
-	def someway_match(animPath, dbpediaPath, matchDict, matWay):
-		"""
-		创建新文件保存匹配上的term及匹配方式，例如 Book以equal的方式匹配上了，则两个文件相应列修改为： .../book,book->.../book,book,equal
-		:param dbpediaPath: 需要被修改的文件路径
-		:param matchDict:  匹配列表
-		:param matWay:  匹配方式
-		"""
-		with open("data/" + matWay + "Anim", "w") as matchedAnim:
-			with open(animPath) as animfile:
-				animContent = animfile.readlines()
-				for line in animContent:
-					ele = line.split(";")[0].strip()
-					if ele in matchDict.keys():
-						matchedAnim.write(line.strip() + ";" + matWay +";"+matchDict[ele]+ "\n")
-					else:
-						matchedAnim.write(line.strip() + "\n")
-		with open("data/" + matWay + "DBpedia", "w") as matchedDBpedia:
-			with open(dbpediaPath) as dbpediaFile:
-				dbpediaContent = dbpediaFile.readlines()
-				for line in dbpediaContent:
-					matched_dbpedia_term_uri=line.split(";")[0]
-					if matched_dbpedia_term_uri in matchDict.values():
-						content=line.strip() + ";" + matWay+";"+list(matchDict.keys())[list(matchDict.values()).index(line.split(";")[0].strip())]
-						matchedDBpedia.write(line.strip() + ";" + matWay+";"+
-											list(matchDict.keys())[list(matchDict.values()).index(line.split(";")[0].strip())]#fixme 根据value得到key
-						                     + "\n")
-					else:
-						matchedDBpedia.write(line.strip() + "\n")
+
 
 	def clz2entity_match(animPath,clz2entityList):
 		"""
@@ -427,8 +490,8 @@ standardizing_data()
 # OntologyMatching.someway_match("data/standanim", "data/standdbpedia", equalDict, "equal")
 
 # # wordNet匹配
-# syno_dic = OntologyMatching.get_wordNet_syno_dic("none")
-# OntologyMatching.someway_match("data/equalAnim", "data/equalDBpedia", syno_dic, "wordNet_syno")
+syno_dict = OntologyMatching.get_wordNet_syno_dic("none")
+# OntologyMatching.someway_match("data/equalAnim", "data/equalDBpedia", syno_dict, "wordNet_syno")
 #
 # #thesuaru匹配：精度控制5，即前五个同义词
 # dbpedia_term_dict=get_term_dict("data/wordNet_synoDBpedia", 1)
@@ -437,10 +500,15 @@ standardizing_data()
 
 #动画类对应DBpedia_category没有效果，程序备份在commit中
 
-# # 动画类对实例:360个。TODO：animClz2EntityDBpedia中是没有类对应到实例的相关数据的，因为实例信息是通过网络查询sparql获取的，仅仅在animClz2EntityAnim中可见
-anim_dict = get_term_dict("data/thesuaru_synoAnim",1)
-clz2entityDict=animClz2dbIns(anim_dict)
-OntologyMatching.someway_match("data/thesuaru_synoAnim", "data/thesuaru_synoDBpedia", clz2entityDict, "animClz2Entity")
+# 动画类对实例:360个。FIXME：animClz2EntityDBpedia中是没有类对应到实例的相关数据的，因为实例信息是通过网络查询sparql获取的，仅仅在animClz2EntityAnim中可见
+# anim_dict = get_term_dict("data/thesuaru_synoAnim",1)
+# clz2entityDict=animClz2dbIns(anim_dict)
+# OntologyMatching.someway_match("data/thesuaru_synoAnim", "data/thesuaru_synoDBpedia", clz2entityDict, "animClz2Entity")
+
+
+# 动画类近义词对实例:155个
+syno_dict_for_anim2Entity=OntologyMatching.get_wrodNet_syno_dict_for_anim2Entity("data/animClz2EntityAnim")
+OntologyMatching.someway_match("data/animClz2EntityAnim", "data/animClz2EntityDBpedia", syno_dict_for_anim2Entity, "animsynoClz2Entity")
 
 # 编辑距离为1匹配且字符串长度大于4的匹配
 # animList = OntologyMatching.get_item("data/equalAnim")

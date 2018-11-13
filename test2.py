@@ -21,3 +21,6 @@ if ";equal;" in strxx:
 	print(1111111111111)
 else:
 	print(3333)
+
+re1 = re.compile(u'<http://.*?#(.*?)> <http://.*?#(.*?)> <http://.*?#(.*?)> .')
+re2 = re.compile(u'<http://.*?#(.*?)> <http://.*?#(.*?)> "(.*?)".*?<http://.*?> .')
