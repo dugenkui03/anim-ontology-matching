@@ -51,6 +51,62 @@ class OntologyMatching():
 				# print(line.strip() + " has no term")
 		return res
 
+	def get_matched_info(file_path="data/animsynoClz2EntityAnim"):
+		"""
+		获取已经匹配的数据放进字典中，格式是<anim,dbpedia_term_uri>
+		file_path
+		"""
+		with open(file_path) as anim_file:
+			matched_anim_dict = {}
+			regex = re.compile(".*;.*;.*")
+			anim_content = anim_file.readlines()
+			for anim_line in anim_content:
+				m = regex.match(anim_line)
+				if m:
+					arr = str(m.group()).split(";")
+					ele = {}
+					ele[arr[2]] = arr[3]
+					matched_anim_dict[arr[1]] = ele
+
+		return matched_anim_dict
+
+	# 字典格式<anim_term,dbpedia_term_uri> TODO：匹配方式也应该记录，因为有的是类2类，有的是类2实例——可以通过DBpedia的uri分析得到，但是不精确
+	dict_res = get_matched_info()
+
+	def complete_repeated_matched_data(matched_data_dict, matched_file_path="data/matchedAnim",
+	                                   data_file_path="data/animsynoClz2EntityAnim"):
+		"""
+		对于动画知识库中term相同但是只匹配上一个的情况，另一个term名称相同的anim_term也以相同的方式匹配到同一个DBpedia_term上。方式如下：
+			遍历data_file_path中的数据行，如果此数据行是没有匹配上的数据(if not regex.match(anim_line)，并且anim_term可以在matched_data_dict中找到
+			，则使用此数据行的term_uri构造新数据(term_uri,matched_way,matched_dbpedia_term_uri)
+		:param matched_data_dict: 记录已经匹配上的数据，格式是<anim_term,<matched_way,matched_dbpedia_term_uri>>
+		:param matched_file_path: 要写入的文件路径
+		:param data_file_path:  数据来源文件
+		:return:
+		"""
+		with open(matched_file_path, "w") as new_file:
+			with open(data_file_path) as anim_file:
+				regex = re.compile(".*;.*;.*")
+				anim_content = anim_file.readlines()
+				for anim_line in anim_content:
+					"""
+					如果是没有匹配上的数据"""
+					if not regex.match(anim_line):
+						"""
+						如果是没有匹配上的，则需要处理:
+						1. 查看是否有同名term已经匹配上DBpedia数据：
+							1)如果有的话，则
+						"""
+						arr = anim_line.split(";")
+						if arr[1].strip() in matched_data_dict.keys():
+							new_file.write(arr[0] + ";" + list(matched_data_dict[arr[1].strip()].keys())[0] + ";" +
+							               matched_data_dict[arr[1].strip()][
+								               list(matched_data_dict[arr[1].strip()].keys())[0]] + "\n")
+						else:
+							new_file.write(anim_line)
+					else:
+						new_file.write(anim_line)
+
 	def someway_match(animPath, dbpediaPath, matchDict, matWay):
 		"""
 		创建新文件保存匹配上的term及匹配方式，例如 Book以equal的方式匹配上了，则两个文件相应列修改为： .../book,book->.../book,book,equal
@@ -132,6 +188,7 @@ class OntologyMatching():
 						res[anim_line.split(";")[0]] = dbpedia_term_dict[syn_term_syno]
 		return res
 
+
 	def get_thesauru_syno_dic(dbpedia_term_dict):
 		"""
 		同上：
@@ -152,6 +209,9 @@ class OntologyMatching():
 			anim_content = anim_file.readlines()
 			# cout=0
 			for anim_line in anim_content:
+				# 不匹配已经匹配的数据
+				if len(anim_line.split(";"))>2 :
+					continue
 				# cout+=1
 				# if cout>100 :
 				# 	break
@@ -481,7 +541,7 @@ def animClz2dbIns(anim_dict):
 
 
 # 标准化数据
-standardizing_data()
+# standardizing_data()
 
 # 相等匹配:103(比之前多了近一倍）
 # animList = OntologyMatching.get_item("data/standanim")
@@ -490,7 +550,7 @@ standardizing_data()
 # OntologyMatching.someway_match("data/standanim", "data/standdbpedia", equalDict, "equal")
 
 # # wordNet匹配
-syno_dict = OntologyMatching.get_wordNet_syno_dic("none")
+# syno_dict = OntologyMatching.get_wordNet_syno_dic("none")
 # OntologyMatching.someway_match("data/equalAnim", "data/equalDBpedia", syno_dict, "wordNet_syno")
 #
 # #thesuaru匹配：精度控制5，即前五个同义词
@@ -506,9 +566,19 @@ syno_dict = OntologyMatching.get_wordNet_syno_dic("none")
 # OntologyMatching.someway_match("data/thesuaru_synoAnim", "data/thesuaru_synoDBpedia", clz2entityDict, "animClz2Entity")
 
 
-# 动画类近义词对实例:155个
-syno_dict_for_anim2Entity=OntologyMatching.get_wrodNet_syno_dict_for_anim2Entity("data/animClz2EntityAnim")
-OntologyMatching.someway_match("data/animClz2EntityAnim", "data/animClz2EntityDBpedia", syno_dict_for_anim2Entity, "animsynoClz2Entity")
+# 动画类wordNet近义词对实例:155个
+# syno_dict_for_anim2Entity=OntologyMatching.get_wrodNet_syno_dict_for_anim2Entity("data/animClz2EntityAnim")
+# OntologyMatching.someway_match("data/animClz2EntityAnim", "data/animClz2EntityDBpedia", syno_dict_for_anim2Entity, "animsynoClz2Entity")
+
+#todo 动画类thesuaru近义词匹配实体
+
+"""
+动画知识库term命名会有重复，比如两个humna，一个指生物个体，子类是头胸腹，一个是指物种，子类是男女老少；
+处理方式：没匹配的数据与其同名的匹配上的term匹配到同一个DBpedia数据就好。
+"""
+anim_matched_data_dict=OntologyMatching.get_matched_info()# 有默认路径data/animsynoClz2EntityAnim
+OntologyMatching.complete_repeated_matched_data(anim_matched_data_dict)
+
 
 # 编辑距离为1匹配且字符串长度大于4的匹配
 # animList = OntologyMatching.get_item("data/equalAnim")
