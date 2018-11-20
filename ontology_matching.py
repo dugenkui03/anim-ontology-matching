@@ -67,12 +67,12 @@ class OntologyMatching():
 					ele = {}
 					ele[arr[2]] = arr[3]
 					matched_anim_dict[arr[1]] = ele
-		#对字典进行排序，按照key，item:item[1]表示按照value元素进行排序。fixme：不会修改原始数据，因此需要用引用接收修改后的数据
-		matched_anim_dict=sorted(matched_anim_dict.items(), key=lambda item: item[0])
+		#对字典进行排序，按照key，item:item[1]表示按照value元素进行排序。fixme：1.返回的是list；2.不会修改原始数据，因此需要用引用接收修改后的数据
+		# matched_anim_dict=sorted(matched_anim_dict.items(), key=lambda item: item[0])
 		return matched_anim_dict
 
-	def complete_repeated_matched_data(matched_data_dict, matched_file_path="data/matchedAnim",
-	                                   data_file_path="data/animsynoClz2EntityAnim"):
+	def complete_repeated_matched_data(matched_data_dict, matched_file_path="data/finalMatchedAnim",
+	                                   data_file_path="data/animThesuaruSynoClz2EntityAnim"):
 		"""
 		对于动画知识库中term相同但是只匹配上一个的情况，另一个term名称相同的anim_term也以相同的方式匹配到同一个DBpedia_term上。方式如下：
 			遍历data_file_path中的数据行，如果此数据行是没有匹配上的数据(if not regex.match(anim_line)，并且anim_term可以在matched_data_dict中找到
@@ -614,13 +614,13 @@ def animClz2dbIns(anim_dict):
 #
 
 # 动画类thesuaru近义词匹配实体
-thesuaru_syno_dict_for_anim2Entity=OntologyMatching.get_thesauru_syno_dict_for_anim2Entity("data/animWordNetsynoClz2EntityAnim")
-OntologyMatching.someway_match("data/animWordNetsynoClz2EntityAnim", "data/animWordNetsynoClz2EntityDBpedia", thesuaru_syno_dict_for_anim2Entity, "animThesuaruSynoClz2Entity")
+# thesuaru_syno_dict_for_anim2Entity=OntologyMatching.get_thesauru_syno_dict_for_anim2Entity("data/animWordNetsynoClz2EntityAnim")
+# OntologyMatching.someway_match("data/animWordNetsynoClz2EntityAnim", "data/animWordNetsynoClz2EntityDBpedia", thesuaru_syno_dict_for_anim2Entity, "animThesuaruSynoClz2Entity")
 
 # 动画知识库term命名会有重复，比如两个humna，一个指生物个体，子类是头胸腹，一个是指物种，子类是男女老少；
 # 处理方式：没匹配的数据与其同名的匹配上的term匹配到同一个DBpedia数据就好。
-# anim_matched_data_dict=OntologyMatching.get_matched_info("data/animWordNetsynoClz2EntityAnim")# 有默认路径data/animsynoClz2EntityAnim
-# OntologyMatching.complete_repeated_matched_data(anim_matched_data_dict)
+anim_matched_data_dict=OntologyMatching.get_matched_info("data/animThesuaruSynoClz2EntityAnim")# 有默认路径data/animsynoClz2EntityAnim
+OntologyMatching.complete_repeated_matched_data(anim_matched_data_dict)
 
 
 # 编辑距离为1匹配且字符串长度大于4的匹配
