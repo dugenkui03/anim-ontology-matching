@@ -67,11 +67,9 @@ class OntologyMatching():
 					ele = {}
 					ele[arr[2]] = arr[3]
 					matched_anim_dict[arr[1]] = ele
-
+		#对字典进行排序，按照key，item:item[1]表示按照value元素进行排序。fixme：不会修改原始数据，因此需要用引用接收修改后的数据
+		matched_anim_dict=sorted(matched_anim_dict.items(), key=lambda item: item[0])
 		return matched_anim_dict
-
-	# 字典格式<anim_term,dbpedia_term_uri> TODO：匹配方式也应该记录，因为有的是类2类，有的是类2实例——可以通过DBpedia的uri分析得到，但是不精确
-	dict_res = get_matched_info()
 
 	def complete_repeated_matched_data(matched_data_dict, matched_file_path="data/matchedAnim",
 	                                   data_file_path="data/animsynoClz2EntityAnim"):
@@ -95,7 +93,7 @@ class OntologyMatching():
 						"""
 						如果是没有匹配上的，则需要处理:
 						1. 查看是否有同名term已经匹配上DBpedia数据：
-							1)如果有的话，则
+							1)如果有的话，则 
 						"""
 						arr = anim_line.split(";")
 						if arr[1].strip() in matched_data_dict.keys():
@@ -247,7 +245,7 @@ class OntologyMatching():
 		"""
 		res={}
 		threadlist=[]
-		print("动画term近义词对应DBpedia实例：")
+		print("动画term的wordNet近义词对应DBpedia实例：")
 		with open(anim_file_path) as anim_file:
 			anim_content=anim_file.readlines()
 			for anim_line in anim_content:
@@ -263,6 +261,50 @@ class OntologyMatching():
 						threadlist.append(threadx)
 						threadx.start()
 						time.sleep(0.005)
+
+		for t in threadlist:
+			t.join()
+
+		return res
+
+	def get_thesauru_syno_dict_for_anim2Entity(anim_file_path):
+		"""
+		1. 获取anim_term对应的近义词列表，封装在字典中，精度控制到前五个；
+		2. 网络接口查询这些近义词有没有对应的DBpedia实例，有则将<anim_term_uri,DBpedia实例_uri>放进字典。
+		"""
+		res={}
+		threadlist=[]
+		pattern = re.compile("/browse/[a-zA-Z]*")
+		syno_api = "https://www.thesaurus.com/browse/"
+		print("动画term的thesauru近义词对应DBpedia实例：")
+		with open(anim_file_path) as anim_file:
+			anim_content=anim_file.readlines()
+			for anim_line in anim_content:
+				#不去匹配已经匹配的数据
+				if len(anim_line.split(";"))>2 :
+					continue
+				anim_term=anim_line.split(";")[1].strip()
+
+				element_content = bs4.BeautifulSoup(
+					requests.get(syno_api + anim_term).content.decode("utf-8", "HTML")).find_all(id='loadingContainer')
+				match_list = pattern.findall(str(element_content))
+
+				syno_list = []
+				count = 0
+				for match_ele in match_list:
+					count += 1
+					if count > syno_list_capacity-4:
+						break;
+					if match_ele.split("/")[2] == anim_term:
+						continue
+					syno_list.append(match_ele.split("/")[2])
+
+				for syno_term_word in syno_list:
+					if syno_term_word!=anim_term:
+						threadx=Term2Entity(syno_term_word+";"+anim_line.split(";")[0].strip(),res)
+						threadlist.append(threadx)
+						threadx.start()
+						time.sleep(0.01)
 
 		for t in threadlist:
 			t.join()
@@ -567,17 +609,18 @@ def animClz2dbIns(anim_dict):
 
 
 # 动画类wordNet近义词对实例:155个
-# syno_dict_for_anim2Entity=OntologyMatching.get_wrodNet_syno_dict_for_anim2Entity("data/animClz2EntityAnim")
-# OntologyMatching.someway_match("data/animClz2EntityAnim", "data/animClz2EntityDBpedia", syno_dict_for_anim2Entity, "animsynoClz2Entity")
+# wordNet_syno_dict_for_anim2Entity=OntologyMatching.get_wrodNet_syno_dict_for_anim2Entity("data/animClz2EntityAnim")
+# OntologyMatching.someway_match("data/animClz2EntityAnim", "data/animClz2EntityDBpedia", wordNet_syno_dict_for_anim2Entity, "animWordNetsynoClz2Entity")
+#
 
-#todo 动画类thesuaru近义词匹配实体
+# 动画类thesuaru近义词匹配实体
+thesuaru_syno_dict_for_anim2Entity=OntologyMatching.get_thesauru_syno_dict_for_anim2Entity("data/animWordNetsynoClz2EntityAnim")
+OntologyMatching.someway_match("data/animWordNetsynoClz2EntityAnim", "data/animWordNetsynoClz2EntityDBpedia", thesuaru_syno_dict_for_anim2Entity, "animThesuaruSynoClz2Entity")
 
-"""
-动画知识库term命名会有重复，比如两个humna，一个指生物个体，子类是头胸腹，一个是指物种，子类是男女老少；
-处理方式：没匹配的数据与其同名的匹配上的term匹配到同一个DBpedia数据就好。
-"""
-anim_matched_data_dict=OntologyMatching.get_matched_info()# 有默认路径data/animsynoClz2EntityAnim
-OntologyMatching.complete_repeated_matched_data(anim_matched_data_dict)
+# 动画知识库term命名会有重复，比如两个humna，一个指生物个体，子类是头胸腹，一个是指物种，子类是男女老少；
+# 处理方式：没匹配的数据与其同名的匹配上的term匹配到同一个DBpedia数据就好。
+# anim_matched_data_dict=OntologyMatching.get_matched_info("data/animWordNetsynoClz2EntityAnim")# 有默认路径data/animsynoClz2EntityAnim
+# OntologyMatching.complete_repeated_matched_data(anim_matched_data_dict)
 
 
 # 编辑距离为1匹配且字符串长度大于4的匹配
