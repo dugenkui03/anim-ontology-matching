@@ -97,7 +97,10 @@ class OntologyMatching():
 						"""
 						arr = anim_line.split(";")
 						if arr[1].strip() in matched_data_dict.keys():
-							new_file.write(arr[0] + ";" + list(matched_data_dict[arr[1].strip()].keys())[0] + ";" +
+							# print(arr[0] + ";" +arr[1].strip()+";"+ list(matched_data_dict[arr[1].strip()].keys())[0] + ";" +
+							#                matched_data_dict[arr[1].strip()][
+							# 	               list(matched_data_dict[arr[1].strip()].keys())[0]] + "\n")
+							new_file.write(arr[0] + ";"  +arr[1].strip()+";"+ list(matched_data_dict[arr[1].strip()].keys())[0] + ";" +
 							               matched_data_dict[arr[1].strip()][
 								               list(matched_data_dict[arr[1].strip()].keys())[0]] + "\n")
 						else:
