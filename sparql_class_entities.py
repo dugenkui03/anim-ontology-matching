@@ -37,7 +37,7 @@ with open("data/clzEntities","w",encoding='utf-8') as ent_file:
 					checked_list.append(listX[3])
 
 				print(listX[3])
-				ent_file.write(listX[3])
+				ent_file.write(listX[3].strip()+"\n")
 				entities=query_entities(listX[3])
 				print(len(entities))
 				ent_file.write(str(entities)+"\n")
