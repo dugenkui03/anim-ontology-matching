@@ -23,6 +23,7 @@ def query_entities(clz):
 	return res_list
 
 
+checked_list=[]
 with open("data/clzEntities","w",encoding='utf-8') as ent_file:
 	equal_list=["equal","wordNet_syno","thesuaru_syno"]
 	with open("data/finalMatchedAnim") as final_file:
@@ -30,6 +31,13 @@ with open("data/clzEntities","w",encoding='utf-8') as ent_file:
 		for line in file_content:
 			listX=line.split(";")
 			if len(listX)>2 and listX[2] in equal_list:
+				if listX[3] in checked_list:
+					continue;
+				else:
+					checked_list.append(listX[3])
+
+				print(listX[3])
 				ent_file.write(listX[3])
 				entities=query_entities(listX[3])
+				print(len(entities))
 				ent_file.write(str(entities)+"\n")
