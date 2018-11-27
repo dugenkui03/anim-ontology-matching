@@ -1,0 +1,10 @@
+动画类对应到DBpedia的数据类型(datatype)
+DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#KiloByte);kilobyte;thesuaru_syno;<http://dbpedia.org/datatype/kilowatt>
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#NoNameTree);nonametree;thesuaru_syno;<http://dbpedia.org/datatype/metre>
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#DayTemplate);day;equal;<http://dbpedia.org/datatype/day>
+DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Day);day;equal;<http://dbpedia.org/datatype/day>
+DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Hour);hour;equal;<http://dbpedia.org/datatype/hour>
+DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Second);second;equal;<http://dbpedia.org/datatype/second>
+DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Minute);minute;equal;<http://dbpedia.org/datatype/minute>
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#LimeTree);limetree;thesuaru_syno;<http://dbpedia.org/datatype/metre>
+DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#MegaByte);megabyte;equal;<http://dbpedia.org/datatype/megabyte>

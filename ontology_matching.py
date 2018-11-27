@@ -622,8 +622,29 @@ def animClz2dbIns(anim_dict):
 
 # 动画知识库term命名会有重复，比如两个humna，一个指生物个体，子类是头胸腹，一个是指物种，子类是男女老少；
 # 处理方式：没匹配的数据与其同名的匹配上的term匹配到同一个DBpedia数据就好。
-anim_matched_data_dict=OntologyMatching.get_matched_info("data/animThesuaruSynoClz2EntityAnim")# 有默认路径data/animsynoClz2EntityAnim
-OntologyMatching.complete_repeated_matched_data(anim_matched_data_dict)
+# anim_matched_data_dict=OntologyMatching.get_matched_info("data/animThesuaruSynoClz2EntityAnim")# 有默认路径data/animsynoClz2EntityAnim
+# OntologyMatching.complete_repeated_matched_data(anim_matched_data_dict)
+
+"""
+对于类匹配：获取DBpedia—schema类下的所有实例(fixme 接口最多可获取1w个实例)，数据格式如下：
+<类信息>
+uri_1
+uri_2
+...
+如：
+<http://dbpedia.org/ontology/Person>
+http://dbpedia.org/resource/Andreas_Ekberg
+http://dbpedia.org/resource/Danilo_Tognon
+http://dbpedia.org/resource/Lorine_Livington_Pruette
+...
+<http://dbpedia.org/ontology/Animal>
+http://dbpedia.org/resource/Amblycera
+http://dbpedia.org/resource/Amblyopsidae
+http://dbpedia.org/resource/American_black_bear
+http://dbpedia.org/resource/American_pickerel
+...
+"""
+equal_list=["equal","wordNet_syno","thesuaru_syno"]
 
 
 # 编辑距离为1匹配且字符串长度大于4的匹配
