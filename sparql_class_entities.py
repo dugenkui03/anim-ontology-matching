@@ -3,11 +3,12 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 
 
 def query_entities(clz):
-	res_list=[]
+	# res_list=[]
+	num=0
 	sparql = SPARQLWrapper("http://dbpedia.org/sparql")
 	sparql.setQuery(
 	"""
-	select ?label
+	select COUNT(?label) as ?cou
 	where{
 	?label <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 
 	"""+clz+
@@ -19,11 +20,12 @@ def query_entities(clz):
 	sparql.setReturnFormat(JSON)
 	results = sparql.query().convert()
 	for result in results["results"]["bindings"]:
-		res_list.append(result["label"]["value"])
-	return res_list
+		num=result["cou"]["value"]
+	return num
 
 
 checked_list=[]
+sum=0
 with open("data/clzEntities","w",encoding='utf-8') as ent_file:
 	equal_list=["equal","wordNet_syno","thesuaru_syno"]
 	with open("data/finalMatchedAnim") as final_file:
@@ -32,12 +34,16 @@ with open("data/clzEntities","w",encoding='utf-8') as ent_file:
 			listX=line.split(";")
 			if len(listX)>2 and listX[2] in equal_list:
 				if listX[3] in checked_list:
+
 					continue;
 				else:
 					checked_list.append(listX[3])
 
-				print(listX[3])
-				ent_file.write(listX[3].strip()+"\n")
-				entities=query_entities(listX[3])
-				print(len(entities))
-				ent_file.write(str(entities)+"\n")
+				print(listX[3].strip()+":",end="")
+				# ent_file.write(listX[3].strip()+"\n")
+				count=query_entities(listX[3])
+				sum+=int(count)
+				print(count)
+				# print(len(entities))
+				# ent_file.write(str(entities)+"\n")
+print(sum)
