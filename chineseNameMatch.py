@@ -3,6 +3,10 @@ import re
 from SPARQLWrapper import SPARQLWrapper,JSON
 
 
+"""
+todo :label与ChineseName匹配
+"""
+
 sparql=SPARQLWrapper("http://dbpedia.org/sparql")
 
 with open("data/chineseName_data/chineseNameResource",encoding="utf8") as chineseName_file:

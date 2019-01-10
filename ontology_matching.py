@@ -8,6 +8,7 @@ import re
 import requests
 import bs4
 
+# 1. 去掉dbpedia文件中的非类型数据
 class OntologyMatching():
 	"""
 	 fixme 以下函数分析用，实际匹配需要修改文件
@@ -586,7 +587,10 @@ def animClz2dbIns(anim_dict):
 
 
 # 标准化数据
-# standardizing_data()
+standardizing_data()
+
+
+#TODO label匹配chineseName
 
 # 相等匹配:103(比之前多了近一倍）
 # animList = OntologyMatching.get_item("data/standanim")
@@ -603,7 +607,7 @@ def animClz2dbIns(anim_dict):
 # thesauru_dict=OntologyMatching.get_thesauru_syno_dic(dbpedia_term_dict)
 # OntologyMatching.someway_match("data/wordNet_synoAnim", "data/wordNet_synoDBpedia", thesauru_dict, "thesuaru_syno")
 
-#动画类对应DBpedia_category没有效果，程序备份在commit中
+
 
 # 动画类对实例:360个。FIXME：animClz2EntityDBpedia中是没有类对应到实例的相关数据的，因为实例信息是通过网络查询sparql获取的，仅仅在animClz2EntityAnim中可见
 # anim_dict = get_term_dict("data/thesuaru_synoAnim",1)
