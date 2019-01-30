@@ -4,7 +4,7 @@ DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Ape
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Bed);bed;animClz2Entity;<http://dbpedia.org/resource/Bed>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Egg);egg;animClz2Entity;<http://dbpedia.org/resource/Egg>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Cap);cap;wordNet_syno;<http://dbpedia.org/ontology/Capital>
-DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Set)
+DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Set);set;wordNet_syno;<http://dbpedia.org/ontology/Place>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Cup);cup;animClz2Entity;<http://dbpedia.org/resource/Cup>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Cup);cup;animClz2Entity;<http://dbpedia.org/resource/Cup>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#May);may;animClz2Entity;<http://dbpedia.org/resource/May>
@@ -27,7 +27,7 @@ DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Bon
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Alga);alga;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Algae>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Meat);meat;animClz2Entity;<http://dbpedia.org/resource/Meat>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#Body);body;animClz2Entity;<http://dbpedia.org/resource/Body>
-DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Text);text;thesuaru_syno;<http://dbpedia.org/ontology/Document>
+DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Text);text;thesuaru_syno;<http://xmlns.com/foaf/0.1/Document>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#Time);time;animWordNetsynoClz2Entity;<http://dbpedia.org/resource/Clock>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Mile);mile;thesuaru_syno;<http://dbpedia.org/ontology/Square>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#City);city;equal;<http://dbpedia.org/ontology/City>
@@ -97,14 +97,14 @@ DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Pla
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Bird);bird;equal;<http://dbpedia.org/ontology/Bird>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Fern);fern;equal;<http://dbpedia.org/ontology/Fern>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#empty);empty;animClz2Entity;<http://dbpedia.org/resource/Empty>
-DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#Shoes)
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#Shoes);shoes;wordNet_syno;<http://dbpedia.org/ontology/Place>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#flare);flare;animClz2Entity;<http://dbpedia.org/resource/Flare>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Beach);beach;animClz2Entity;<http://dbpedia.org/resource/Beach>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#Cloud);cloud;wordNet_syno;<http://dbpedia.org/ontology/Swarm>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Death);death;equal;<http://dbpedia.org/ontology/Death>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Plant);plant;equal;<http://dbpedia.org/ontology/Plant>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#shape);shape;animWordNetsynoClz2Entity;<http://dbpedia.org/resource/Condition>
-DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Topic);topic
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Topic);
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Swing);swing;animClz2Entity;<http://dbpedia.org/resource/Swing>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#Shirt);shirt;animClz2Entity;<http://dbpedia.org/resource/Shirt>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#twist);twist;animClz2Entity;<http://dbpedia.org/resource/Twist>
@@ -126,10 +126,10 @@ DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#Light)
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Clock);clock;animClz2Entity;<http://dbpedia.org/resource/Clock>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Train);train;equal;<http://dbpedia.org/ontology/Train>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Birth);birth;equal;<http://dbpedia.org/ontology/Birth>
-DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Shoes)
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Shoes);shoes;wordNet_syno;<http://dbpedia.org/ontology/Place>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#Skirt);skirt;animClz2Entity;<http://dbpedia.org/resource/Skirt>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Phone);phone;animWordNetsynoClz2Entity;<http://dbpedia.org/resource/Telephone>
-DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#Human);human
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#Human);human;thesuaru_syno;<http://dbpedia.org/ontology/Person>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Chair);chair;wordNet_syno;<http://dbpedia.org/ontology/President>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Fruit);fruit;animWordNetsynoClz2Entity;<http://dbpedia.org/resource/Yield>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Frock);frock;animClz2Entity;<http://dbpedia.org/resource/Frock>
@@ -171,7 +171,7 @@ DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Spo
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Class);class;animClz2Entity;<http://dbpedia.org/resource/Class>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1411135280.owl#PinkC);pinkc;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Pink>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Snake);snake;animWordNetsynoClz2Entity;<http://dbpedia.org/resource/Hydra>
-DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Human);human;thesuaru_syno;<http://dbpedia.org/ontology/Person>
+DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Human);human;animClz2Entity;<http://dbpedia.org/resource/Human>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Apple);apple;animClz2Entity;<http://dbpedia.org/resource/Apple>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#March);march;animClz2Entity;<http://dbpedia.org/resource/March>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Cloud);cloud;wordNet_syno;<http://dbpedia.org/ontology/Swarm>
@@ -342,11 +342,11 @@ DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Mix
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Keeping);keeping;animWordNetsynoClz2Entity;<http://dbpedia.org/resource/Retention>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#ShyPlot);shy
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1411135280.owl#YellowC);yellowc;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Yellow>
-DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#Evening);evening;animClz2Entity;<http://dbpedia.org/resource/Evening>
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#Evening);evening;wordNet_syno;<http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Tuesday);tuesday;animClz2Entity;<http://dbpedia.org/resource/Tuesday>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#NoCloud);nocloud;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Cloud>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Lantern);lantern;animClz2Entity;<http://dbpedia.org/resource/Lantern>
-DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Putting);putting
+DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Putting);putting;wordNet_syno;<http://dbpedia.org/ontology/Place>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Saturday);saturday;animClz2Entity;<http://dbpedia.org/resource/Saturday>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Offering);offering;animClz2Entity;<http://dbpedia.org/resource/Offering>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Arachnid);arachnid;equal;<http://dbpedia.org/ontology/Arachnid>
@@ -458,7 +458,7 @@ DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Tou
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#RainPlot);rain;animClz2Entity;<http://dbpedia.org/resource/Rain>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1411135280.owl#CleanFog);cleanfog;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Clean>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Pursuing);pursuing
-DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Position);position;animClz2Entity;<http://dbpedia.org/resource/Position>
+DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Position);position;wordNet_syno;<http://dbpedia.org/ontology/Place>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Tigerbud);tigerbud
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#flexible);flexible;animWordNetsynoClz2Entity;<http://dbpedia.org/resource/Elastic>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1411135280.owl#HeavyMag);heavymag;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Heavy>
@@ -546,7 +546,7 @@ DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Sub
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1496659417.owl#RunAction);runaction
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#WorkScene);work;equal;<http://dbpedia.org/ontology/Work>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Inserting);inserting;animWordNetsynoClz2Entity;<http://dbpedia.org/resource/Insert>
-DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#PlacePlot);place;equal;<http://dbpedia.org/ontology/Place>
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#PlacePlot);place;equal;<http://dbpedia.org/ontology/Place>;thesuaru_syno;<http://dbpedia.org/ontology/City>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Designing);designing;animWordNetsynoClz2Entity;<http://dbpedia.org/resource/Design>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#SumacTree);sumactree
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Repairing);repairing;animWordNetsynoClz2Entity;<http://dbpedia.org/resource/Animate>
@@ -826,7 +826,7 @@ DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Cal
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306283939.owl#PianoAction);pianoaction;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Plan>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#bench_shape);benchshape
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#CareForPlot);carefor;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Care>
-DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306283939.owl#HumanAction);humanaction;thesuaru_syno;<http://dbpedia.org/ontology/Person>
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306283939.owl#HumanAction);humanaction;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Man>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#StateOfMind);stateofmind;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/State>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#EmptyLayout);emptylayout;thesuaru_syno;<http://dbpedia.org/ontology/Employer>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#DiningScene);dining;animWordNetsynoClz2Entity;<http://dbpedia.org/resource/Din>
@@ -847,7 +847,7 @@ DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306283939.owl#Facial
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306283939.owl#FacialHappy);facialhappy;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Feel>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#tower_shape);towershape;thesuaru_syno;<http://dbpedia.org/ontology/Tower>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#DayDuration);dayduration;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Saturation>
-DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306283939.owl#PlantAction);plantaction;wordNet_syno;<http://dbpedia.org/ontology/Plant>
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306283939.owl#PlantAction);plantaction;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Plantation>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1448934359.owl#SkiingEvent);skiingevent
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#mango_shape);mangoshape
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306283939.owl#ShootAction);shootaction
@@ -864,7 +864,7 @@ DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306283939.owl#PhoneA
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306283939.owl#DriveAction);driveaction;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Direction>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306283939.owl#MusicAction);musicaction;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Mastication>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#apple_shape);appleshape
-DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Explanation);explanation;animClz2Entity;<http://dbpedia.org/resource/Explanation>
+DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Explanation);explanation;thesuaru_syno;<http://schema.org/Comment>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1357699817.owl#Lo_SkyArea1);loskyarea1
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#rocky_shape);rockyshape
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#Color_Noble);colornoble
@@ -939,12 +939,12 @@ DefaultOWLNamedClass(http://www.owl-ontologies.com/MyCamera.owl#Move_Static);mov
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#WeatherPlot);weather;animClz2Entity;<http://dbpedia.org/resource/Weather>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/MyCamera.owl#camera_shot);camerashot;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Came>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/MyCamera.owl#Static_Move);staticmove;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Static>
-DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#plant_shape);plantshape;wordNet_syno;<http://dbpedia.org/ontology/Plant>
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#plant_shape);plantshape;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Plantation>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Discovering);discovering;animWordNetsynoClz2Entity;<http://dbpedia.org/resource/Discover>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/MyCamera.owl#UpDirection);updirection;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Indirection>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#color_black);colorblack
 DefaultOWLNamedClass(http://www.owl-ontologies.com/MyCamera.owl#LookupPitch);lookuppitch;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Look>
-DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#plant_shape);plantshape;wordNet_syno;<http://dbpedia.org/ontology/Plant>
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#plant_shape);plantshape;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Plantation>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Classifying);classifying
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1488534407.owl#redFirework);redfirework
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1411135280.owl#ThinDensity);thindensity;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Intensity>
@@ -1118,7 +1118,7 @@ DefaultOWLNamedClass(http://www.owl-ontologies.com/MyCamera.owl#CloseupScale);cl
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#DoorTemplate);door;thesuaru_syno;<http://dbpedia.org/ontology/Gate>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#flare_lively);flarelively
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1411135280.owl#ModerateWind);moderatewind
-DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#ToneTemplate);tone
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#ToneTemplate);tone;wordNet_syno;<http://purl.org/ontology/bibo/Note>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#JumpTemplate);jump;animWordNetsynoClz2Entity;<http://dbpedia.org/resource/Chute>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#school_shape);schoolshape;thesuaru_syno;<http://dbpedia.org/ontology/School>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#ground_shape);groundshape
@@ -1178,7 +1178,7 @@ DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#StudyT
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#FareWellScene);farewell;animClz2Entity;<http://dbpedia.org/resource/Farewell>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#AquaticMammal);aquaticmammal;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Aquatic>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#SentientAgent);sentientagent
-DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#plant_cartoon);plantcartoon;wordNet_syno;<http://dbpedia.org/ontology/Plant>
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#plant_cartoon);plantcartoon
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#apple_cartoon);applecartoon;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Application>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Matriculation);matriculation;animClz2Entity;<http://dbpedia.org/resource/Matriculation>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1357699817.owl#Lo_TableArea1);lotablearea1
@@ -1436,7 +1436,7 @@ DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Memory
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#GeometricPoint);geometricpoint
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#ActionJumpPlot);actionjump;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Action>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/MyCamera.owl#Three_Parallel);threeparallel;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/More>
-DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#PlantSubstance);plantsubstance;wordNet_syno;<http://dbpedia.org/ontology/Plant>
+DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#PlantSubstance);plantsubstance;thesuaru_syno;<http://xmlns.com/foaf/0.1/Person>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#WeatherProcess);weatherprocess
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#twist_elegance);twistelegance
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#RunActionTopic);runaction
@@ -1673,7 +1673,7 @@ DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#SleepA
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1411135280.owl#NaturePhenomenon);naturephenomenon;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Nature>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#ReligiousProcess);religiousprocess;thesuaru_syno;<http://dbpedia.org/ontology/Religious>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#OutdoorSportPlot);outdoorsport
-DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#PlaceDescription);placedescription;;equal;<http://dbpedia.org/ontology/Place>
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#PlaceDescription);placedescription;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Place>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#RadiatingNuclear);radiatingnuclear
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#ModelRelatedPlot);model;equal;<http://dbpedia.org/ontology/Model>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#ComputerLanguage);computerlanguage;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Computer>
@@ -1687,7 +1687,7 @@ DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Ale
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#BowlingSportPlot);bowlingsport;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Blind>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#ChildrenDayScene);childrenday
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#elitehouse_shape);elitehouseshape
-DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#SocietyPlacePlot);societyplace;equal;<http://dbpedia.org/ontology/Place>
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#SocietyPlacePlot);societyplace;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/First>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#elitehouse_shape);elitehouseshape
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#NaturalSubstance);naturalsubstance
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1457533409.owl#DynamicIntensity);dynamicintensity
@@ -1736,8 +1736,8 @@ DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#gymnas
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#LocationAttribute);locationattribute
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#ValentineDayTopic);valentineday
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#ChemicalSynthesis);chemicalsynthesis
-DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#NonFloweringPlant);nonfloweringplant;wordNet_syno;<http://dbpedia.org/ontology/Plant>
-DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#FareWellMaRelated);farewell;animClz2Entity;<http://dbpedia.org/reso;urce/Farewell>
+DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#NonFloweringPlant);nonfloweringplant
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#FareWellMaRelated);farewell;animClz2Entity;<http://dbpedia.org/resource/Farewell>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#CommercialService);commercialservice;thesuaru_syno;<http://dbpedia.org/ontology/Memorial>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#GoodIntentionPlot);goodintention;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Good>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#GeologicalProcess);geologicalprocess
@@ -1772,7 +1772,7 @@ DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Ordina
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#FestivalMaRelated);festival;equal;<http://schema.org/Festival>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#DeductiveArgument);deductiveargument
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#PingPongSportPlot);pingpongsport
-DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#EducationBuilding);equal;<http://dbpedia.org/ontology/EducationalInstitution>
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#EducationBuilding);educationbuilding
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#SocialInteraction);socialinteraction;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Small>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#EngineeringDevice);engineeringdevice
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#BabyThingTemplate);babything;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Bathing>
@@ -1866,7 +1866,7 @@ DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Waterf
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#TemperatureMeasure);temperaturemeasure
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Axiom_Icy_OnGround);axiomicyonground
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#BirdAnimalTemplate);birdanimal
-DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#EducationalProcess);educationalprocess;equal;<http://dbpedia.org/ontology/EducationalInstitution>
+DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#EducationalProcess);educationalprocess
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#NegativeRealNumber);negativerealnumber
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1291624979.owl#HeavilyPollutedAir);heavilypollutedair
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#Nothing_0MaRelated);nothing0
@@ -1886,7 +1886,7 @@ DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#Int
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#table_cartoon_full);tablecartoonfull;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Tableau>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#PhysiologicProcess);physiologicprocess;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Full>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#operatingMaRelated);operating;animWordNetsynoClz2Entity;<http://dbpedia.org/resource/Function>
-DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#LocalPlaceTemplate);localplace;equal;<http://dbpedia.org/ontology/Place>
+DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#LocalPlaceTemplate);localplace;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Local>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#cap_cartoon_rugged);capcartoonrugged;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Put>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#bush_cartoon_lively);bushcartoonlively
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#AprilFoolsMaRelated);aprilfools;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/April>
@@ -2177,7 +2177,7 @@ DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#MidAut
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#BackgroundSceneRelated);background;animClz2Entity;<http://dbpedia.org/resource/Background>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#MRBasketballActionPlot);mrbasketballaction
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#MidAutumnFestivalScene);midautumnfestival
-DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#GovernmentOrganization);governmentorganization;equal;<http://dbpedia.org/ontology/GovernmentAgency>
+DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#GovernmentOrganization);governmentorganization;equal;<http://schema.org/GovernmentOrganization>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#DevelopmentalAttribute);developmentalattribute
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#SchoolroomoutMaRelated);schoolroomout
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#beach_cartoon_elegance);beachcartoonelegance
@@ -2222,7 +2222,7 @@ DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1306459186.owl#banana
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#ChineseChessActionTopic);chinesechessaction;animThesuaruSynoClz2Entity;<http://dbpedia.org/resource/Chancel>
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#SocialCurrencyTimeTopic);socialcurrencytime
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#ClimbMountainActionPlot);climbmountainaction
-DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#EducationalOrganization);educationalorganization;equal;<http://dbpedia.org/ontology/EducationalInstitution>
+DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#EducationalOrganization);educationalorganization;equal;<http://schema.org/EducationalOrganization>
 DefaultOWLNamedClass(http://www.ontologyportal.org/translations/SUMO.owl.txt#LinguisticCommunication);linguisticcommunication
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#ButterflyGrassMaRelated);butterflygrass
 DefaultOWLNamedClass(http://www.owl-ontologies.com/Ontology1290308675.owl#DragonBoatFestivalScene);dragonboatfestival

@@ -31,7 +31,7 @@ def query_entities(label_str):
 		num=result["cou"]["value"]
 	return num
 
-with open("data/finalMatchedAnim")as matched_file:
+with open("data/finalMatchedAnim_bk0110_自动化数据备份")as matched_file:
 	file_content=matched_file.readlines()
 	for file_line in file_content:
 		key_word=file_line.split(";")[1].strip().title()

@@ -72,7 +72,7 @@ class OntologyMatching():
 		# matched_anim_dict=sorted(matched_anim_dict.items(), key=lambda item: item[0])
 		return matched_anim_dict
 
-	def complete_repeated_matched_data(matched_data_dict, matched_file_path="data/finalMatchedAnim",
+	def complete_repeated_matched_data(matched_data_dict, matched_file_path="data/finalMatchedAnim_bk0110_自动化数据备份",
 	                                   data_file_path="data/animThesuaruSynoClz2EntityAnim"):
 		"""
 		对于动画知识库中term相同但是只匹配上一个的情况，另一个term名称相同的anim_term也以相同的方式匹配到同一个DBpedia_term上。方式如下：

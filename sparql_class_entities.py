@@ -28,7 +28,7 @@ checked_list=[]
 sum=0
 with open("data/clzEntities","w",encoding='utf-8') as ent_file:
 	equal_list=["equal","wordNet_syno","thesuaru_syno"]
-	with open("data/finalMatchedAnim") as final_file:
+	with open("data/finalMatchedAnim_bk0110_自动化数据备份") as final_file:
 		file_content=final_file.readlines()
 		for line in file_content:
 			listX=line.split(";")
